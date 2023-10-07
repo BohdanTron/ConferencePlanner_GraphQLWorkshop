@@ -11,9 +11,9 @@ namespace GraphQL.Data
         public string Name { get; set; } = default!;
 
         [StringLength(4000)]
-        public string Bio { get; set; } = default!;
+        public string? Bio { get; set; }
 
         [StringLength(1000)]
-        public virtual string WebSite { get; set; } = default!;
+        public virtual string? WebSite { get; set; }
     }
 }

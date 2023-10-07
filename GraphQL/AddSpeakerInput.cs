@@ -2,6 +2,6 @@
 {
     public record AddSpeakerInput(
         string Name,
-        string Bio,
-        string Website);
+        string? Bio,
+        string? Website);
 }
