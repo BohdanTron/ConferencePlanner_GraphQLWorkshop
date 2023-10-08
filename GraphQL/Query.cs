@@ -1,4 +1,5 @@
 ﻿using GraphQL.Data;
+using GraphQL.DataLoader;
 
 namespace GraphQL
 {
@@ -6,5 +7,9 @@ namespace GraphQL
     {
         public IQueryable<Speaker> GetSpeakers(ApplicationDbContext context) =>
             context.Speakers;
+
+        public Task<Speaker> GetSpeaker(int id, SpeakerByIdDataLoader dataLoader,
+            CancellationToken cancellationToken) =>
+            dataLoader.LoadAsync(id, cancellationToken);
     }
 }

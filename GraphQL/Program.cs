@@ -1,5 +1,6 @@
 using GraphQL;
 using GraphQL.Data;
+using GraphQL.DataLoader;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +14,9 @@ builder.Services
     .AddGraphQLServer()
     .RegisterDbContext<ApplicationDbContext>()
     .AddQueryType<Query>()
-    .AddMutationType<Mutation>();
+    .AddMutationType<Mutation>()
+    .AddDataLoader<SpeakerByIdDataLoader>()
+    .AddDataLoader<SessionByIdDataLoader>();
 
 var app = builder.Build();
 
