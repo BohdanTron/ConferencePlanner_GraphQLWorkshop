@@ -2,6 +2,7 @@
 
 namespace GraphQL
 {
+    [MutationType]
     public class Mutation
     {
         public async Task<AddSpeakerPayload> AddSpeaker(
