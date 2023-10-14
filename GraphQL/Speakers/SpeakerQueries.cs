@@ -1,10 +1,10 @@
 ﻿using GraphQL.Data;
 using GraphQL.DataLoader;
 
-namespace GraphQL
+namespace GraphQL.Speakers
 {
     [QueryType]
-    public static class Query
+    public static class SpeakerQueries
     {
         public static IQueryable<Speaker> GetSpeakers(ApplicationDbContext context) =>
             context.Speakers;
