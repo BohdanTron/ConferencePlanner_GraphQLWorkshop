@@ -1,13 +1,13 @@
 ﻿using GraphQL.Data;
 
-namespace GraphQL
+namespace GraphQL.Speakers
 {
     [MutationType]
-    public class Mutation
+    public class SpeakerMutations
     {
         public async Task<AddSpeakerPayload> AddSpeaker(
             AddSpeakerInput input,
-            [Service] ApplicationDbContext context)
+            ApplicationDbContext context)
         {
             var speaker = new Speaker
             {
@@ -21,6 +21,5 @@ namespace GraphQL
 
             return new AddSpeakerPayload(speaker);
         }
-
     }
 }
