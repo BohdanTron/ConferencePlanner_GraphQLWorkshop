@@ -1,14 +1,20 @@
-﻿using GraphQL.Data;
+﻿using GraphQL.Common;
+using GraphQL.Data;
 
 namespace GraphQL.Speakers
 {
     [MutationType]
     public class SpeakerMutations
     {
-        public async Task<AddSpeakerPayload> AddSpeaker(
+        public async Task<MutationResult<Speaker, UserError>> AddSpeaker(
             AddSpeakerInput input,
             ApplicationDbContext context)
         {
+            if (string.IsNullOrEmpty(input.Name))
+            {
+                return new UserError("The name cannot be empty", "NAME_EMPTY");
+            }
+
             var speaker = new Speaker
             {
                 Name = input.Name,
@@ -19,7 +25,12 @@ namespace GraphQL.Speakers
             context.Speakers.Add(speaker);
             await context.SaveChangesAsync();
 
-            return new AddSpeakerPayload(speaker);
+            return speaker;
         }
     }
+
+    public record AddSpeakerInput(
+        string Name,
+        string? Bio,
+        string? Website);
 }

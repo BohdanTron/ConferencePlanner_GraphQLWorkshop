@@ -12,7 +12,7 @@ builder.Services
     .AddGraphQLServer()
     .AddConferencePlannerTypes()
     .AddGlobalObjectIdentification()
-    //.AddMutationConventions()
+    .AddMutationConventions()
     .RegisterDbContext<ApplicationDbContext>();
 
 var app = builder.Build();
