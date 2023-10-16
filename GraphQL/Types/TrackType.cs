@@ -11,6 +11,7 @@ namespace GraphQL.Types
             descriptor
                 .Field(t => t.Sessions)
                 .ResolveWith<TrackResolvers>(t => t.GetSessions(default!, default!, default!, default))
+                .UsePaging<NonNullType<SessionType>>()
                 .Name("sessions");
         }
 

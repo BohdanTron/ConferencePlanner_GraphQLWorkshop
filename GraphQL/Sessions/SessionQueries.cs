@@ -1,11 +1,13 @@
 ﻿using GraphQL.Data;
 using GraphQL.DataLoader;
+using GraphQL.Types;
 
 namespace GraphQL.Sessions
 {
     [QueryType]
     public static class SessionQueries
     {
+        [UsePaging(typeof(NonNullType<SessionType>))]
         public static IQueryable<Session> GetSessions(ApplicationDbContext context) =>
             context.Sessions;
 

@@ -7,8 +7,9 @@ namespace GraphQL.Tracks
     [QueryType]
     public static class TrackQueries
     {
+        [UsePaging]
         public static IQueryable<Track> GetTracks(ApplicationDbContext context) =>
-            context.Tracks;
+            context.Tracks.OrderBy(t => t.Name);
 
         public static Task<Track> GetTrackByName(string name, ApplicationDbContext context,
             CancellationToken cancellationToken) =>

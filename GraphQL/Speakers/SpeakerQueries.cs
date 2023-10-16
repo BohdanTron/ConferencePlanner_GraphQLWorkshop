@@ -6,6 +6,7 @@ namespace GraphQL.Speakers
     [QueryType]
     public static class SpeakerQueries
     {
+        [UsePaging]
         public static IQueryable<Speaker> GetSpeakers(ApplicationDbContext context) =>
             context.Speakers;
 
