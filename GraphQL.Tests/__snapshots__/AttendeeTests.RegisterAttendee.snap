@@ -1,0 +1,18 @@
+﻿{
+  "Kind": "SingleResult",
+  "Label": null,
+  "Path": null,
+  "Data": {
+    "registerAttendee": {
+      "attendee": {
+        "id": "QXR0ZW5kZWUKaTE="
+      }
+    }
+  },
+  "Items": null,
+  "Errors": null,
+  "Extensions": null,
+  "Incremental": null,
+  "ContextData": null,
+  "HasNext": null
+}
