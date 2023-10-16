@@ -27,6 +27,22 @@ namespace GraphQL.Speakers
 
             return speaker;
         }
+
+        public async Task<MutationResult<Speaker, UserError>> DeleteSpeaker(
+            [ID(nameof(Speaker))] int id,
+            ApplicationDbContext context)
+        {
+            var speaker = await context.Speakers.FindAsync(id);
+            if (speaker is null)
+            {
+                return new UserError("Speaker not found", "INVALID_SPEAKER_ID");
+            }
+
+            context.Remove(speaker);
+            await context.SaveChangesAsync();
+
+            return speaker;
+        }
     }
 
     public record AddSpeakerInput(

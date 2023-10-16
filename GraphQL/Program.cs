@@ -13,7 +13,9 @@ builder.Services
     .AddConferencePlannerTypes()
     .AddGlobalObjectIdentification()
     .AddMutationConventions()
-    .RegisterDbContext<ApplicationDbContext>();
+    .RegisterDbContext<ApplicationDbContext>()
+    .AddTypeConverter<DateTime, DateTimeOffset>(t =>
+        t.Kind is DateTimeKind.Unspecified ? DateTime.SpecifyKind(t, DateTimeKind.Utc) : t);
 
 var app = builder.Build();
 

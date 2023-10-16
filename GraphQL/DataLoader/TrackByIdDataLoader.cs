@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GraphQL.Data;
+﻿using GraphQL.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace GraphQL.DataLoader
@@ -12,7 +7,7 @@ namespace GraphQL.DataLoader
     {
         private readonly IServiceProvider _serviceProvider;
 
-        public TrackByIdDataLoader(IBatchScheduler batchScheduler, IServiceProvider serviceProvider) 
+        public TrackByIdDataLoader(IBatchScheduler batchScheduler, IServiceProvider serviceProvider)
             : base(batchScheduler)
         {
             _serviceProvider = serviceProvider;

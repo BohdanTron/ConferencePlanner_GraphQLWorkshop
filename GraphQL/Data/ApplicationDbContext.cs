@@ -27,6 +27,14 @@ namespace GraphQL.Data
                 .HasKey(ss => new { ss.SessionId, ss.SpeakerId });
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+
+            optionsBuilder.EnableSensitiveDataLogging();
+            optionsBuilder.EnableDetailedErrors();
+        }
+
         public DbSet<Speaker> Speakers => Set<Speaker>();
 
         public DbSet<Session> Sessions => Set<Session>();
