@@ -1,5 +1,6 @@
 ﻿using GraphQL.Common;
 using GraphQL.Data;
+using HotChocolate.Subscriptions;
 
 namespace GraphQL.Sessions
 {
@@ -44,6 +45,7 @@ namespace GraphQL.Sessions
         public async Task<MutationResult<Session, UserError>> ScheduleSession(
             ScheduleSessionInput input,
             ApplicationDbContext context,
+            [Service] ITopicEventSender eventSender,
             CancellationToken cancellationToken)
         {
             if (input.EndTime < input.StartTime)
@@ -63,6 +65,8 @@ namespace GraphQL.Sessions
             session.EndTime = input.EndTime;
 
             await context.SaveChangesAsync(cancellationToken);
+
+            await eventSender.SendAsync(nameof(SessionSubscriptions.OnSessionScheduled), session.Id, cancellationToken);
 
             return session;
         }

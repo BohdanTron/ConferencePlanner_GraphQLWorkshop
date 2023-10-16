@@ -16,11 +16,13 @@ builder.Services
     .RegisterDbContext<ApplicationDbContext>()
     .AddFiltering()
     .AddSorting()
+    .AddInMemorySubscriptions()
     .AddTypeConverter<DateTime, DateTimeOffset>(t =>
         t.Kind is DateTimeKind.Unspecified ? DateTime.SpecifyKind(t, DateTimeKind.Utc) : t);
 
 var app = builder.Build();
 
+app.UseWebSockets();
 app.MapGraphQL();
 
 app.Run();
