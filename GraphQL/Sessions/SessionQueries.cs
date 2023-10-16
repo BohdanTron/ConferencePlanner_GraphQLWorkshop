@@ -8,6 +8,8 @@ namespace GraphQL.Sessions
     public static class SessionQueries
     {
         [UsePaging(typeof(NonNullType<SessionType>))]
+        [UseFiltering(typeof(SessionFilterInputType))]
+        [UseSorting]
         public static IQueryable<Session> GetSessions(ApplicationDbContext context) =>
             context.Sessions;
 

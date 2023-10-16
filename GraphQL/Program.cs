@@ -14,6 +14,8 @@ builder.Services
     .AddGlobalObjectIdentification()
     .AddMutationConventions()
     .RegisterDbContext<ApplicationDbContext>()
+    .AddFiltering()
+    .AddSorting()
     .AddTypeConverter<DateTime, DateTimeOffset>(t =>
         t.Kind is DateTimeKind.Unspecified ? DateTime.SpecifyKind(t, DateTimeKind.Utc) : t);
 
